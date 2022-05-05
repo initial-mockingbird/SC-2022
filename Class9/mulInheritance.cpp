@@ -52,7 +52,7 @@ class Gato : public Animal
         }
 };
 
-class PerroGato : public Perro, public Gato 
+class PerroGato : public Perro, public Gato
 {
     public:
         int edad = 1;
@@ -60,15 +60,32 @@ class PerroGato : public Perro, public Gato
 };
 
 
-
-
 int main(int argc, const char** argv) 
 {
     PerroGato pg;
 
+    // invariantes
+    list<gatos> /= list<animales>?
+    gatos* /= animal*?
+
+    // Contravarianza
+    gato <- animal
+    funcion(gato) -> funcion(animal)?
+
+    // Covarianza
+    gato funcion() <- animal funcion()?
+
+    Gato g(){
+        return gato;
+    }
+
+
+    Animal a = g(); 
+
+
     std::cout << pg.edad << std::endl;
     pg.desastre();
-    pg.habla();
+    pg.Perro::habla();
 
     return 0;
 }

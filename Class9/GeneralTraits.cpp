@@ -99,6 +99,9 @@ int length_fun(int _,int b){
     return b++;
 }
 
+
+
+
 template < template<typename A> class C, typename A, typename B>
 class Foldable
 {
@@ -108,6 +111,48 @@ public:
     static int length(C<A>* t);
     static const int spooky_number = 10; 
 };
+
+
+/*
+l [1,2,3,4] = 1 + 2 + 3 + 4 =  10
+
+int res = 0;
+while !(l.isEmpty()){
+    res = l.head() + res;
+    l = l.tail();
+}
+
+return res
+
+((((1 + 0) + 2) + 3) + 4) = 10
+((((1 op 0) op 2) op 3) op 4) 
+((((1 op acc) op 2) op 3) op 4) 
+
+
+
+
+foldl(op,acc,lista)
+{
+    int res = acc;
+    while !(l.isEmpty())
+    {
+        res = op(l.head(),res);
+        l = l.tail();
+    }
+
+    return res
+}
+
+int aux(int _, int x){
+    return x++;
+}
+
+foldl(+,0,lista) <- la suma de los elementos de la lista
+foldl(*,1,lista) <- la multiplicacion de los elementos de la lista
+foldl(aux,0,lista) <- la longitud de la lista
+
+4 
+*/
 
 template <typename A, typename B>
     class Foldable<SLL,A,B>
@@ -131,6 +176,10 @@ template <typename A, typename B>
     };
 
 
+template <typename T>
+class BST : public 
+
+
 
 
 int main(int argc, const char** argv) 
@@ -143,6 +192,10 @@ int main(int argc, const char** argv)
 
     std::cout << Foldable<SLL,int,int>::spooky_number << std::endl;
     std::cout << Foldable<SLL,int,int>::foldl(add, 0, &listica) << std::endl;
+    // funciones anonimas
+    // funciones lambda
+    // expresiones lambda?
+    std::cout << Foldable<SLL,int,int>::foldl([](int x, int y){return x+y;}, 0, &listica) << std::endl;
     std::cout << Foldable<SLL,int,int>::length(&listica) << std::endl;
 
     /*

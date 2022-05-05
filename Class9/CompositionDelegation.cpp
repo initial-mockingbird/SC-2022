@@ -48,9 +48,12 @@ class Gato : public Animal
         }
 };
 
+
 class PerroGato : public Animal
 {
     public:
+        Gato g;
+        
         int edad = 1;
         void habla()
         {
@@ -61,8 +64,8 @@ class PerroGato : public Animal
             p.desastre();
         }
     private:
-        Gato g;
         Perro p;
+        
         
 };
 
@@ -75,6 +78,13 @@ int main(int argc, const char** argv)
     std::cout << pg.edad << std::endl;
     pg.desastre();
     pg.habla();
+
+    PerroGato pg2;
+
+    pg2.edad = 20;
+
+    std::cout << pg.edad << std::endl;
+    std::cout << pg2.edad << std::endl;
 
     return 0;
 }
