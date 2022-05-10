@@ -92,42 +92,31 @@ BinTree<int>* fromLevelOrder(std::list<Node> l)
     return root;
 }
 
-
-bool sol(BinTree<int>* t, int* target,std::list<int>* res)
+// Haskelll <3
+// python iteradores
+// lenguajes concurrentes elixir, erlang, etc, bloqueando el canal.
+bool sol(BinTree<int>* t, int target,std::list<int>* res)
 {
     if (t->isLeaf())
+        return target == 0;
+
+    int current = target-t->value();
+
+    bool leftRes = sol(t->left(),current,res);
+    if (leftRes)
+    {
+        res->push_front(t->value());
         return true;
-
-    bool b = false;    
-    *target = *target - t->value();
-    int n = *target;
-    res->push_back(t->value());
-
-
-    if (!t->left()->isLeaf())
-    {
-        b = sol(t->left(),target,res);
-
-        if (b && *target == 0)
-            return b;
-
-        *target = n;
-        res->pop_back();
-        b = false;
     }
-    
-    if (!t->right()->isLeaf())
-    {
-        b = sol(t->right(),target,res);
-        if (b && *target == 0)
-            return b;
+    bool rightRes = sol(t->right(),current,res);
 
-        *target = n;
-        res->pop_back();
-        b = false;
+    if(leftRes)
+    {
+        res->push_front(t->value());
+        return true;
     }
-    
-    return b;
+
+    return false;
 }
 
 int main(int argc, char const *argv[])
@@ -156,7 +145,7 @@ int main(int argc, char const *argv[])
     std::list<int> l;
     int target = 22;
 
-    bool b = sol(bt,&target,&l);
+    bool b = sol(bt,target,&l);
 
     std::cout << b << std::endl;
     std::cout << ToString<std::list<int> >::show(l) << std::endl;

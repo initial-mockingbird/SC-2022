@@ -95,6 +95,9 @@ namespace To_String
         }
         static std::string show(std::list<T> l)
         {   
+
+            // [1,2,3,4]
+            // 1 -> 2 -> 3 -> 4 -> nil
             std::string res = "";
             for (auto c : l)
                 res += ToString<T>::show(c) + " -> ";

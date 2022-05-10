@@ -100,8 +100,6 @@ int sol(BinTree<int>* t)
         return 0;
 
     return 1 + MAX(sol(t->left()),sol(t->right()));
-
-    
 }
 
 int main(int argc, char const *argv[])

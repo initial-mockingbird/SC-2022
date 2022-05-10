@@ -1,3 +1,4 @@
+#pragma once 
 #include <iostream> 
 #include <stdlib.h> 
 #include <string>   
@@ -12,7 +13,6 @@
 #define MAX(a,b) (a>b?a:b)
 
 
-
 #ifndef Tree_H // include guard
 #define Tree_H
 
@@ -20,6 +20,17 @@ namespace Tree
 {
     
     enum class TEnum {Leaf,Node};
+    /*
+    enum class Opciones {Insercion, Elimacion, Impresion};
+                           0          1           2
+    if (opcion == Opciones::Insersion)
+    {
+        algo
+    } else if(opcion == Opciones::Elimacion)
+    {
+        otra cosa
+    }
+    */
 
     template<typename T>
     class TreeNode{
@@ -39,6 +50,7 @@ namespace Tree
                 return this->right;
             }
 
+            // Ejemplo especifico tipo union.
             TEnum tag = TEnum::Leaf;
             T            value;
             TreeNode<T>* left;
@@ -132,6 +144,23 @@ namespace Tree
 
 namespace FoldableM
 {
+
+    /*
+    new acc = f(acc,t)
+    new acc2 = f(new acc, siguiente nodo)
+    ....
+    t -> siguiente nodo -> otro -> 
+
+
+    new acc = f(t,l,acc)
+    new acc2 = f(t,r,new acc)
+      l
+     /
+    t 
+     \ 
+      r
+
+    */
     using namespace Tree;
     template <typename A, typename B>
     class Foldable<BinTree,A,B>
@@ -193,3 +222,4 @@ namespace To_String
 }
 
 #endif /* Tree_H */
+

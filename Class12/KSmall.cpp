@@ -9,15 +9,12 @@
 #include "Foldable.h"
 #include "To_String.h"
 #include "Tree.h"
+#include "BST.h"
 #define MIN(a,b) (a<b?a:b)
 #define MAX(a,b) (a>b?a:b)
 
-
-
-using namespace FoldableM;
-using namespace To_String;
 using namespace Tree;
-
+using namespace bst;
 
 enum class NodeType {Null,Content};
 class Node
@@ -94,21 +91,29 @@ BinTree<int>* fromLevelOrder(std::list<Node> l)
 }
 
 
-void sol(BinTree<int>* t)
+
+
+void kSmallest(BinTree<int>* t, int* k, int* res)
 {
 
     if (t->isLeaf())
         return ;
+    
+    kSmallest(t->left(),k,res);
 
+    if (*k == 1)
+    {
+        *res = t->value();
+        *k   = 0;
+        return ; 
+    }
 
-    BinTree<int>* l = t->left();
-    BinTree<int>* r = t->right();
+    *k = MAX(*k - 1,0);
 
-    t->setLeft(r);
-    t->setRight(l);
+    if (*k <= 0)
+        return;
 
-    sol(t->left());
-    sol(t->right());
+    kSmallest(t->right(),k,res);
 
 }
 
@@ -116,22 +121,26 @@ int main(int argc, char const *argv[])
 {
     std::list<Node> in;
 
+    in.push_back(*new Node(5)  );
     in.push_back(*new Node(3)  );
-    in.push_back(*new Node(9)  );
-    in.push_back(*new Node(20) );
+    in.push_back(*new Node(6)  );
+    in.push_back(*new Node(2)  );
+    in.push_back(*new Node(4)  );
     in.push_back(*new Node()   );
     in.push_back(*new Node()   );
-    in.push_back(*new Node(15) );
-    in.push_back(*new Node(7)  );
-   
+    in.push_back(*new Node(1)  );
+    in.push_back(*new Node()   );
+    in.push_back(*new Node()   );
+    in.push_back(*new Node()   );
 
 
     BinTree<int>* bt = fromLevelOrder(in);
+    int k = 3;
+    int res = -10;
+    kSmallest(bt,&k,&res);
 
     std::cout << ToString<BinTree<int> >::show(bt)  << std::endl;
-
-    sol(bt);
-
-    std::cout << ToString<BinTree<int> >::show(bt)  << std::endl;
+    std::cout << res  << std::endl;
+    
     return 0;
 }
