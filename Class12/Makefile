@@ -1,6 +1,6 @@
 EXEFOLDER=./Executables
 FLAGS=-std=c++17
-all: RightSideView LCA LCA_BST Symmetric Thief
+all: RightSideView LCA LCA_BST Symmetric Thief Kadane
 	echo "Done"
 RightSideView:
 	g++ $(FLAGS) RightSideView.cpp -o $(EXEFOLDER)/RightSideView.sh
@@ -12,6 +12,8 @@ Symmetric:
 	g++ $(FLAGS) Symmetric.cpp -o $(EXEFOLDER)/Symmetric.sh
 Thief:
 	g++ $(FLAGS) Thief.cpp -o $(EXEFOLDER)/Thief.sh
+Kadane:
+	g++ $(FLAGS) Kadane.cpp -o $(EXEFOLDER)/Kadane.sh
 
 .PHONY: clean
 clean:
