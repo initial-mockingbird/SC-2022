@@ -1,17 +1,17 @@
 EXEFOLDER=./Executables
 FLAGS=-std=c++17
-all: Example Recorridos Ciclos Wrestlers Paths
+all: RightSideView LCA LCA_BST Symmetric Thief
 	echo "Done"
-Example:
-	g++ $(FLAGS) Example.cpp -o $(EXEFOLDER)/Example.sh
-Recorridos:
-	g++ $(FLAGS) Recorridos.cpp -o $(EXEFOLDER)/Recorridos.sh
-Ciclos:
-	g++ $(FLAGS) Ciclos.cpp -o $(EXEFOLDER)/Ciclos.sh
-Wrestlers:
-	g++ $(FLAGS) Wrestlers.cpp -o $(EXEFOLDER)/Wrestlers.sh
-Paths:
-	g++ $(FLAGS) Paths.cpp -o $(EXEFOLDER)/Paths.sh
+RightSideView:
+	g++ $(FLAGS) RightSideView.cpp -o $(EXEFOLDER)/RightSideView.sh
+LCA:
+	g++ $(FLAGS) LCA.cpp -o $(EXEFOLDER)/LCA.sh
+LCA_BST:
+	g++ $(FLAGS) LCA_BST.cpp -o $(EXEFOLDER)/LCA_BST.sh
+Symmetric:
+	g++ $(FLAGS) Symmetric.cpp -o $(EXEFOLDER)/Symmetric.sh
+Thief:
+	g++ $(FLAGS) Thief.cpp -o $(EXEFOLDER)/Thief.sh
 
 .PHONY: clean
 clean:
